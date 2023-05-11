@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, render_template
 from models import db, connect_db, Cupcake
 
 app = Flask(__name__)
+app.app_context().push()
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cupcakes'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -44,7 +45,7 @@ def create_cupcake():
     db.session.add(new_cupcake)
     db.session.commit()
 
-    return (jsonify(new_cupcake=new_cupcake.serialize()), 201)
+    return (jsonify(cupcake=new_cupcake.serialize()), 201)
 
 @app.route('/api/cupcakes/<int:id>', methods=['PATCH'])
 def update_cupcake(id):
