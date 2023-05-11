@@ -20,8 +20,8 @@ def home_page():
 def list_cupcakes():
     """Returns JSON with all cupcakes"""
 
-    cupcakes = [cupcake.serialize() for cupcake in Cupcake.query.all()]
-    return jsonify(cupcakes=cupcakes)
+    cupcake = [cupcake.serialize() for cupcake in Cupcake.query.all()]
+    return jsonify(cupcake=cupcake)
 
 @app.route('/api/cupcakes/<int:id>')
 def show_cupcake(id):
